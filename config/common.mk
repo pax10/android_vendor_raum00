@@ -1,6 +1,29 @@
-PRODUCT_BRAND ?= raum00
+# Common overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/common
+# Bring in all video files
+$(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
 #
+PRODUCT_PACKAGES += \
+    AdobeFlashPlayer \
+    AppWidgetPicker \
+    LatinImeDictionaryPack \
+    Microbes \
+    MusicFX \
+    raumLauncher \
+    raumWPs \
+    raumSecurity \
+    ROMControl \
+    SolidExplorer \
+    Torch \
+    TricksterMod
+
+# Use prebuilt su until fixed when built
+PRODUCT_COPY_FILES += \
+    vendor/raum00/prebuilt/system/xbin/7za:system/xbin/7za \
+    vendor/raum00/prebuilt/system/lib/liblbesec.so:system/lib/liblbesec.so \
+    vendor/raum00/prebuilt/system/xbin/su:system/xbin/su
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.tags=release-keys \
     windowsmgr.max_events_per_sec=512 \
@@ -44,37 +67,47 @@ PRODUCT_PROPERTY_OVERRIDES += \
     net.tcp.buffersize.hspa=6144,87380,524288,6144,16384,262144 \
     net.tcp.buffersize.lte=524288,1048576,2097152,524288,1048576,2097152 \
     net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,87380,1048576 \
-
-# Bring in all audio files
-include frameworks/base/data/sounds/NewAudio.mk
-
-# Extra Ringtones
-include frameworks/base/data/sounds/AudioPackageNewWave.mk
-
-# Include audio files
-include vendor/raum00/config/raum_audio.mk
-
-# Bring in all video files
-$(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
-
-PRODUCT_PACKAGE_OVERLAYS += \
-vendor/raum00/overlay/common
-
-# T-Mobile theme engine
-include vendor/raum00/config/themes_common.mk
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-verizon \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.error.receiver.system.apps=com.google.android.feedback \
+    ro.com.google.locationfeatures=1 \
+    ro.setupwizard.enterprise_mode=1 \
+    windowsmgr.max_events_per_sec=240 \
+    dalvik.vm.lockprof.threshold=500 \
+    wifi.supplicant_scan_interval=180 \
 
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/init.d/01raumbomb:system/etc/init.d/01raumbomb \
-    vendor/raum00/prebuilt/system/etc/init.d/91raumzipalign:system/etc/init.d/91raumzialign \
+    vendor/raum00/prebuilt/system/etc/init.d/91raumzipalign:system/etc/init.d/91raumzipalign \
     vendor/raum00/prebuilt/system/etc/init.d/97raumtcp:system/etc/init.d/97raumtcp
 
-ifneq ($(filter raum_mako full_toro,$(TARGET_PRODUCT)),)
+# Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernel \
-    vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumrfs \
-    vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystem
-endif
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+
+PRODUCT_PACKAGES += \
+    e2fsck \
+    mke2fs \
+    tune2fs \
+    openvpn \
+    libssh \
+    ssh \
+    sshd \
+    sshd-config \
+    ssh-keygen \
+    sftp \
+    scp
+
+PRODUCT_PACKAGES += \
+    bash \
+    busybox \
+    DSPManager \
+    libcyanogen-dsp \
+    libncurses \
+    vim
 
 ifeq ($(TARGET_PRODUCT),full_grouper)
 PRODUCT_COPY_FILES += \
@@ -84,74 +117,22 @@ PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystemgrouper
 endif
 
-ifneq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Demon.Voices.mp3 \
-    ro.config.notification_sound=Evil.Sound.mp3 \
-    ro.config.alarm_alert=Neptunium.ogg
-endif
-
-ifeq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Yo.Phone.Is.Ringing.mp3 \
-    ro.config.notification_sound=Neuralizer.mp3 \
-    ro.config.alarm_alert=Plutonium.ogg
-endif
-
-#full speed
-ifneq ($(filter raum_mako full_grouper,$(TARGET_PRODUCT)),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=128m \
-    dalvik.vm.heapgrowthlimit=320m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=16m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapidealfree=8388608 \
-    dalvik.vm.heapconcurrentstart=2097152
-endif
-
-# raum tuna
-ifneq ($(filter full_maguro full_toro,$(TARGET_PRODUCT)),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=96m \
-    dalvik.vm.heapsize=256m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
-endif
-
 # sysinit and sysctl support
 PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/bin/sysinit:system/bin/sysinit \
     vendor/raum00/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
-# Copy MiUi Security port
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/app/raumSecurity.apk:system/app/raumSecurity.apk \
-    vendor/raum00/prebuilt/system/lib/liblbesec.so:system/lib/liblbesec.so \
-    vendor/raum00/prebuilt/system/xbin/su:system/xbin/su
+# Inherit Face lock security blobs
+-include vendor/raum00/configs/common_facelock.mk
 
-#killr extras
-PRODUCT_PACKAGES += \
-        raumWPs \
-        raumLauncher \
-        LockClock
+# Bring in all audio files
+-include frameworks/base/data/sounds/NewAudio.mk
 
-# extras
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/xbin/7za:system/xbin/7za \
-    vendor/raum00/prebuilt/system/xbin/zipalign:system/xbin/zipalign \
-    vendor/raum00/prebuilt/system/xbin/sqlite3:system/xbin/sqlite3 \
-    vendor/raum00/prebuilt/system/app/AdobeFlashPlayer.apk:system/app/AdobeFlashPlayer.apk \
-    vendor/raum00/prebuilt/system/app/TricksterMod.apk:system/app/TricksterMod.apk
+# Extra Ringtones
+-include frameworks/base/data/sounds/AudioPackageNewWave.mk
 
-# Bootanimation
-ifneq ($(TARGET_BOOTANIMATION_NAME),)
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/media/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
-else
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/media/ba.zip:system/media/bootanimation.zip
-endif
+# Include audio files
+-include vendor/raum00/config/raum_audio.mk
+
+# T-Mobile theme engine
+-include vendor/raum00/config/themes_common.mk
