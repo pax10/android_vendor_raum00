@@ -2,13 +2,13 @@
 $(call inherit-product, device/samsung/toro/full_toro.mk)
 
 # Inherit raum00 common bits
-$(call inherit-product, vendor/raum00/configs/common.mk)
+$(call inherit-product, vendor/raum00/config/common.mk)
 
 # Inherit common phone files
-$(call inherit-product, vendor/raum00/configs/phone.mk)
+$(call inherit-product, vendor/raum00/config/phone.mk)
 
 # Inherit common Verizon Wireless Files
-$(call inherit-product, vendor/raum00/configs/vzw.mk)
+$(call inherit-product, vendor/raum00/config/vzw.mk)
 
 # Tuna Overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/tuna
