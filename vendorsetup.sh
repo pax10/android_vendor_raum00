@@ -1,0 +1,2 @@
+add_lunch_combo toro-userdebug
+add_lunch_combo grouper-userdebug
