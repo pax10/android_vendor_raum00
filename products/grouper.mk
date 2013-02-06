@@ -2,7 +2,7 @@
 $(call inherit-product, device/asus/grouper/full_grouper.mk)
 
 # Inherit raum00 common_tablet bits
-$(call inherit-product, vendor/raum00/configs/common_tablet.mk)
+$(call inherit-product, vendor/raum00/configs/tablet.mk)
 
 # Grouper Overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/grouper
