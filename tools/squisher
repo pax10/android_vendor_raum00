@@ -162,10 +162,11 @@ rm -rf $REPACK/ota/recovery
 #OUTFILE=$OUT/$MODVERSION.zip
 
 # Determine what to name the new package
-DATE=`date +%Y%d%m`
+DATE=`date +%Y%m%d`
+TRAGET_PRODUCT=`echo $TARGET_PRODUCT | sed 's/^.*_/full_/g'`
 MODVERSION=`sed -n -e'/ro\.raum\.version/s/^.*=//p' $OUT/system/build.prop`
 echo -e $CL_CYN"MODVERSION: $MODVERSION"$CL_RST
-OUTFILE=$OUT/$TARGET_PRODUCT-$MODVERSION-$(DATE).zip
+OUTFILE=$OUT/$TRAGET_PRODUCT-$MODVERSION-$DATE.zip
 
 # Pack it up and sign
 echo "Zipping package..."
