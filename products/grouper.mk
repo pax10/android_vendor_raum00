@@ -8,7 +8,7 @@ $(call inherit-product, vendor/raum00/config/tablet.mk)
 PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/grouper
 
 # Setup device specific product configuration.
-PRODUCT_NAME := full_grouper
+PRODUCT_NAME := raum_grouper
 PRODUCT_BRAND := google
 PRODUCT_DEVICE := grouper
 PRODUCT_MODEL := Nexus 7

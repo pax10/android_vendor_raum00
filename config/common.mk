@@ -26,55 +26,26 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.tags=release-keys \
-    windowsmgr.max_events_per_sec=512 \
-    ro.kernel.android.checkjni=0 \
-    ro.media.enc.jpeg.quality=100 \
-    ro.config.nocheckin=1 \
-    debug.performance.tuning=1 \
-    persist.service.swiqi.enable=1 \
-    video.accelerate.hw=1 \
-    ro.ril.enable.3g.prefix=1 \
-    ro.ril.hep=1 \
-    ro.ril.hsxpa=3 \
-    ro.ril.enable.dtm=1 \
-    ro.ril.gprsclass=12 \
-    ro.ril.hsdpa.category=28 \
-    ro.ril.enable.a53=1 \
-    ro.ril.enable.3g.prefix=1 \
-    ro.ril.hsupa.category=7 \
-    persist.sys.purgeable_assets=1 \
-    pm.sleep_mode=1 \
-    ro.home_app_adj=1 \
-    ro.ext4fs=1 \
-    persist.sys.use_dithering=0 \
-    ro.ril.disable.power.collapse=0 \
-    dalvik.vm.execution-mode=int:jit \
-    dalvik.vm.verify-bytecode=false \
-    dalvik.vm.dexopt-flags=m=y,v=n,o=v \
-    ro.dalvik.vm.checkjni=0 \
-    ro.max.fling_velocity=15000 \
-    ro.min.fling_velocity=8000 \
-    ro.config.hw_fast_dormancy=1 \
-    net.dns1=8.8.4.4 \
-    net.dns2=8.8.8.8 \
-    net.ppp0.dns1=8.8.8.8 \
-    net.ppp0.dns2=8.8.4.4 \
-    net.tcp.buffersize.default=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.wifi=524288,1048576,2097152,524288,1048576,2097152 \
-    net.tcp.buffersize.umts=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.gprs=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.edge=6144,87380,524288,6144,16384,262144 \
-    net.tcp.buffersize.hspa=6144,87380,524288,6144,16384,262144 \
-    net.tcp.buffersize.lte=524288,1048576,2097152,524288,1048576,2097152 \
-    net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,87380,1048576 \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-    ro.com.google.clientidbase=android-verizon \
+    ro.com.google.clientidbase=android-google \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.error.receiver.system.apps=com.google.android.feedback \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enterprise_mode=1 \
     windowsmgr.max_events_per_sec=240 \
+    ro.kernel.android.checkjni=0 \
+    ro.media.enc.jpeg.quality=100 \
+    video.accelerate.hw=1 \
+    pm.sleep_mode=1 \
+    ro.home_app_adj=1 \
+    ro.ext4fs=1 \
+    persist.sys.use_dithering=0 \
+    ro.ril.disable.power.collapse=0 \
+    net.dns1=8.8.4.4 \
+    net.dns2=8.8.8.8 \
+    net.ppp0.dns1=8.8.8.8 \
+    net.ppp0.dns2=8.8.4.4 \
     dalvik.vm.lockprof.threshold=500 \
     wifi.supplicant_scan_interval=180 \
 
@@ -123,13 +94,13 @@ PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
 # Inherit Face lock security blobs
--include vendor/raum00/config/common_facelock.mk
+#-include vendor/raum00/config/common_facelock.mk
 
 # Bring in all audio files
--include frameworks/base/data/sounds/NewAudio.mk
+#-include frameworks/base/data/sounds/NewAudio.mk
 
 # Extra Ringtones
--include frameworks/base/data/sounds/AudioPackageNewWave.mk
+#-include frameworks/base/data/sounds/AudioPackageNewWave.mk
 
 # Include audio files
 -include vendor/raum00/config/raum_audio.mk

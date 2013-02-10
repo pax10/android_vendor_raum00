@@ -14,7 +14,7 @@ $(call inherit-product, vendor/raum00/config/vzw.mk)
 PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/tuna
 
 # Setup device specific product configuration.
-PRODUCT_NAME := full_toro
+PRODUCT_NAME := raum_toro
 PRODUCT_BRAND := Google
 PRODUCT_DEVICE := toro
 PRODUCT_MODEL := Galaxy Nexus
