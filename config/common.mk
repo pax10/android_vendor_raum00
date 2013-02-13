@@ -5,6 +5,9 @@ $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
 #
 PRODUCT_PACKAGES += \
+    Camera \
+    Development \
+    LatinIME
     AdobeFlashPlayer \
     AppWidgetPicker \
     LatinImeDictionaryPack \
@@ -33,21 +36,53 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.error.receiver.system.apps=com.google.android.feedback \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enterprise_mode=1 \
-    windowsmgr.max_events_per_sec=240 \
-    ro.kernel.android.checkjni=0 \
-    ro.media.enc.jpeg.quality=100 \
-    video.accelerate.hw=1 \
-    pm.sleep_mode=1 \
-    ro.home_app_adj=1 \
-    ro.ext4fs=1 \
-    persist.sys.use_dithering=0 \
     ro.ril.disable.power.collapse=0 \
     net.dns1=8.8.4.4 \
     net.dns2=8.8.8.8 \
     net.ppp0.dns1=8.8.8.8 \
     net.ppp0.dns2=8.8.4.4 \
-    dalvik.vm.lockprof.threshold=500 \
-    wifi.supplicant_scan_interval=180 \
+    dalvik.vm.checkjni=false \
+    dalvik.vm.dexopt-flags=m=y \
+    dalvik.vm.execution-mode=int:jit \
+    dalvik.vm.heapgrowthlimit=128m \
+    dalvik.vm.heapsize=384m \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.lockprof.threshold=850 \
+    dalvik.vm.stack-trace-file=/data/anr/traces.txt \
+    dalvik.vm.verify-bytecode=false \
+    mot.proximity.delay=20 \
+    movfilter=40 \
+    per_sec=300 \
+    net.bt.name=Android \
+    persist.service.swiqi.enable=1 \
+    persist.service.xloud.enable=1 \
+    persist.sys.purgeable_assets=1 \
+    persist.sys.use_dithering=0 \
+    pm.sleep_mode=1 \
+    ro.config.nocheckin=1 \
+    ro.config.hwfeature_wakeupkey=0 \
+    ro.ext4fs=1 \
+    ro.home_app_adj=1 \
+    ro.home_app_mem=8192 \
+    ro.foreground_app_mem=8192 \
+    ro.kernel.android.checkjni=0 \
+    ro.kernel.checkjni=0 \
+    ro.lge.proximity.delay=20 \
+    ro.max.fling_velocity=15000 \
+    ro.media.enc.hprof.vid.bps=8000000 \
+    ro.media.enc.hprof.vid.fps=65 \
+    ro.media.dec.jpeg.memcap=8000000 \
+    ro.media.enc.jpeg.quality=100 \
+    ro.min.fling_velocity=10000 \
+    ro.mot.eri.losalert.delay=600 \
+    ro.semc.xloud.supported=true \
+    ro.semc.sound_effects_enabled=true \
+    ro.service.swiqi.supported=true \
+    ro.visible_app_mem=8192 \
+    video.accelerate.hw=1 \
+    wifi.supplicant_scan_interval=300 \
+    windowsmgr.max_events_per_sec=280 \
+
 
 # init.d support
 PRODUCT_COPY_FILES += \
@@ -58,6 +93,10 @@ PRODUCT_COPY_FILES += \
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+
+PRODUCT_PACKAGES += \
+    Basic \
+    SoundRecorder
 
 PRODUCT_PACKAGES += \
     e2fsck \
@@ -78,7 +117,9 @@ PRODUCT_PACKAGES += \
     DSPManager \
     libcyanogen-dsp \
     libncurses \
-    vim
+    vim \
+    htop \
+    powertop
 
 ifeq ($(TARGET_PRODUCT),full_grouper)
 PRODUCT_COPY_FILES += \

@@ -18,6 +18,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
+PRODUCT_PACKAGES += \
+    SpeakerProximity
+
 PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernel \
     vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumrfs \
@@ -26,3 +29,5 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
      vendor/raum00/prebuilt/system/media/ba-toro.zip:system/media/bootanimation.zip
 
+# Audio Packages
+include frameworks/base/data/sounds/AudioPackage7.mk
