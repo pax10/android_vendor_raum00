@@ -24,7 +24,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-flags=m=y \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.lockprof.threshold=850 \
-    dalvik.vm.verify-bytecode=false
+    dalvik.vm.verify-bytecode=false \
 
 PRODUCT_PACKAGES += \
     SpeakerProximity

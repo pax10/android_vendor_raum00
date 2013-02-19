@@ -3,16 +3,17 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/common
 # Bring in all video files
 $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
+
 #
 PRODUCT_PACKAGES += \
     Camera \
     Development \
-    LatinIME
+    LatinIME \
     AdobeFlashPlayer \
     AppWidgetPicker \
     LatinImeDictionaryPack \
     Microbes \
-    MusicFX \
     raumLauncher \
     raumWPs \
     raumSecurity \
@@ -86,7 +87,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     Basic \
-    SoundRecorder
+    SoundRecorder \
+    MusicFX
 
 PRODUCT_PACKAGES += \
     e2fsck \
@@ -111,13 +113,13 @@ PRODUCT_PACKAGES += \
     htop \
     powertop
 
-ifeq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernelgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/03raumgovgrouper:system/etc/init.d/03raumgovgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumfsgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystemgrouper
-endif
+#ifeq ($(TARGET_PRODUCT),full_grouper)
+#PRODUCT_COPY_FILES += \
+#    vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernelgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/03raumgovgrouper:system/etc/init.d/03raumgovgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumfsgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystemgrouper
+#endif
 
 # sysinit and sysctl support
 PRODUCT_COPY_FILES += \
@@ -125,7 +127,7 @@ PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
 # Inherit Face lock security blobs
-#-include vendor/raum00/config/common_facelock.mk
+-include vendor/raum00/config/facelock.mk
 
 # Bring in all audio files
 #-include frameworks/base/data/sounds/NewAudio.mk
