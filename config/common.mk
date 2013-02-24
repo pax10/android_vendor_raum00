@@ -127,7 +127,7 @@ PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
 # Inherit Face lock security blobs
--include vendor/raum00/config/facelock.mk
+#-include vendor/raum00/config/facelock.mk
 
 # Bring in all audio files
 #-include frameworks/base/data/sounds/NewAudio.mk
