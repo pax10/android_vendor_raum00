@@ -86,7 +86,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     Basic \
-    SoundRecorder
+    SoundRecorder \
+    MusicFX
 
 PRODUCT_PACKAGES += \
     e2fsck \
@@ -111,13 +112,13 @@ PRODUCT_PACKAGES += \
     htop \
     powertop
 
-ifeq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_COPY_FILES += \
-    vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernelgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/03raumgovgrouper:system/etc/init.d/03raumgovgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumfsgrouper \
-    vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystemgrouper
-endif
+#ifeq ($(TARGET_PRODUCT),full_grouper)
+#PRODUCT_COPY_FILES += \
+#    vendor/raum00/prebuilt/system/etc/init.d/02raumkernel:system/etc/init.d/02raumkernelgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/03raumgovgrouper:system/etc/init.d/03raumgovgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/05raumfs:system/etc/init.d/05raumfsgrouper \
+#    vendor/raum00/prebuilt/system/etc/init.d/99raumsystem:system/etc/init.d/99raumsystemgrouper
+#endif
 
 # sysinit and sysctl support
 PRODUCT_COPY_FILES += \
@@ -125,7 +126,7 @@ PRODUCT_COPY_FILES += \
     vendor/raum00/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
 # Inherit Face lock security blobs
-#-include vendor/raum00/config/common_facelock.mk
+#-include vendor/raum00/config/facelock.mk
 
 # Bring in all audio files
 #-include frameworks/base/data/sounds/NewAudio.mk
