@@ -3,16 +3,17 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/raum00/overlay/common
 # Bring in all video files
 $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
+
 #
 PRODUCT_PACKAGES += \
     Camera \
     Development \
-    LatinIME
+    LatinIME \
     AdobeFlashPlayer \
     AppWidgetPicker \
     LatinImeDictionaryPack \
     Microbes \
-    MusicFX \
     raumLauncher \
     raumWPs \
     raumSecurity \
